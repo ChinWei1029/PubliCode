@@ -4,6 +4,13 @@ def get_random_number():
     random_number = random.randint(0, 9)
     return random_number
 
+def isNumber(number):
+    zeroToNine = "0123456789"
+    for x in number :
+        if x not in zeroToNine:
+            return False
+    return True
+
 print("===== Welcome to Number Guessing Game =====")
 chances = 0
 
@@ -14,7 +21,12 @@ while 1:
         random_number = get_random_number()
         while 1:
             chances += 1
-            user_number = int(input("Enter the number you think it is: "))
+            #user_number = int(input("Enter the number you think it is: "))
+            userkeyin = input("Enter the number you think it is: ")
+            while isNumber(userkeyin) == False:
+                chances += 1
+                userkeyin = input("This is not a positive number. Please enter again: ")
+            user_number = int(userkeyin)  
             if user_number > 9 or user_number < 0:
                 print("Invalid input...please try again")
             else:
